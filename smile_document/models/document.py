@@ -64,7 +64,7 @@ class IrAttachement(models.Model):
             if doc.status != status:
                 doc.status = status
 
-    @api.model
+    @api.model_create_multi
     def create(self, values):
         record = super(IrAttachement, self).create(values)
         record._compute_document_status()

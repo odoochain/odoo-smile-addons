@@ -7,7 +7,9 @@
     'name': 'Smile Document',
     'version': '1.0',
     'depends': [
+        'base',
         'attachment_indexation',
+        'documents',
     ],
     'author': 'Smile',
     'description': """
@@ -18,10 +20,10 @@
     'category': 'Document Management',
     'sequence': 10,
     'data': [
-        'views/document_view.xml',
-        'views/menus.xml',
         'security/document_security.xml',
         'security/ir.model.access.csv',
+        'views/document_view.xml',
+        'views/menus.xml',
         'data/ir_cron.xml',
     ],
     'demo_xml': [],

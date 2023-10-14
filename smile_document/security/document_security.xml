@@ -4,7 +4,7 @@
         <!-- Read Documents -->
         <record id="group_read_document" model="res.groups">
             <field name="name">Read Document</field>
-            <field name="category_id" ref="base.module_category_document_management"/>
+            <field name="category_id" ref="documents.module_category_documents_management"/>
             <field name="users" eval="[(4, ref('base.user_admin'))]"/>
             <field name="menu_access" eval="[(6,0, [ref('menu_document_type'),
                                                     ref('menu_document_configuration'),
@@ -16,7 +16,7 @@
         <!-- Manage Documents -->
         <record id="group_manage_document" model="res.groups">
             <field name="name">Manage Document</field>
-            <field name="category_id" ref="base.module_category_document_management"/>
+            <field name="category_id" ref="documents.module_category_documents_management"/>
             <field name="implied_ids" eval="[(4, ref('group_read_document'))]"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
