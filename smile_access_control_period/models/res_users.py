@@ -24,7 +24,7 @@ class ResUsers(models.Model):
     def get_readonly_dates(self):
         return self.env.user.date_start, self.env.user.date_stop
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         user = super(ResUsers, self).create(vals)
         self.clear_caches()

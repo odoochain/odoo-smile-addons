@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-
-from io import BytesIO
+import io
+import mimetypes
+import os
+# from io import BytesIO
 import base64
 
 from odoo import http, _
@@ -24,26 +26,34 @@ class WebsiteAttachmentPage(http.Controller):
                 documents.update(vals)
         return documents
 
-    @http.route('/Attachments', type='http', auth="public", website=True)
+    @http.route('/PublishAttachments', type='http', auth="public", website=True)
     def attachment_details(self, **kw):
         return request.render('smile_publish_document.attachment_template',
                               {'attachments': self.get_attachments()})
 
-    @http.route(['/attachment/download'], type='http', auth='public')
+    @http.route(['/publish-attachment/download'], type='http', auth='public')
     def download_attachment(self, attachment_id, **kw):
-        fields = ["store_fname", "datas", "mimetype", "res_model", "res_id",
+        fields = ["name", "store_fname", "datas", "mimetype", "res_model", "res_id",
                   "type", "url"]
         attachment = request.env['ir.attachment'].sudo().search_read(
             [('id', '=', int(attachment_id))], fields)
-        if not attachment:
-            return redirect('/Attachments')
-        attachment = attachment[0]
+        if attachment:
+            attachment = attachment[0]
+        else:
+            return redirect('/PublishAttachments')
+
         if attachment["type"] == "url":
             if attachment["url"]:
                 return redirect(attachment["url"])
             else:
                 return request.not_found()
-        if attachment["datas"]:
-            data = BytesIO(base64.standard_b64decode(attachment["datas"]))
-            return http.send_file(data, filename=attachment['store_fname'],
-                                  as_attachment=True)
+        elif attachment["datas"]:
+            data = io.BytesIO(base64.standard_b64decode(attachment["datas"]))
+            # we follow what is done in ir_http's binary_content for the extension management D:\addons\odoo-formio\formio_storage_filestore\controllers\main.py
+            extension = os.path.splitext(attachment["name"] or '')[1]
+            extension = extension if extension else mimetypes.guess_extension(attachment["mimetype"] or '')
+            filename = attachment['name']
+            filename = filename if os.path.splitext(filename)[1] else filename + extension
+            return http.send_file(data, filename=filename, as_attachment=True)
+        else:
+            return request.not_found()

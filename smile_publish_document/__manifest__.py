@@ -5,7 +5,7 @@
 
 {
     'name': 'Smile Publish Document',
-    'version': '1.0',
+    'version': '1.0.2',
     'depends': [
         'attachment_indexation', 'website', 'smile_document'
     ],

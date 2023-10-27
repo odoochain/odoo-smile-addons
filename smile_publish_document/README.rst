@@ -45,3 +45,6 @@ Maintainer
 ----------
 
 This module is maintained by Smile SA.
+
+1.0.2
+修正下载main

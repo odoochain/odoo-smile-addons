@@ -11,7 +11,7 @@
                             <br/>
                             <t t-foreach="element_value" t-as="val">
                                 <li style="list-style-type:none;text-align: left;line-left: 50%;list-style-type: circle;">
-                                    <a t-attf-href="attachment/download?attachment_id=#{val.id}">
+                                    <a t-attf-href="publish-attachment/download?attachment_id=#{val.id}">
                                         <span t-esc="val.name"/>
                                     </a>
                                 </li>

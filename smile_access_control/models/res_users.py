@@ -110,7 +110,7 @@ class ResUsers(models.Model):
             user_profile.with_context(active_test=False).mapped(
                 'user_ids')._update_from_profile(fields)
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         record = super(ResUsers, self.with_context(from_create_profile=vals.get('is_user_profile', False))).create(vals)
         if record.user_profile_id:

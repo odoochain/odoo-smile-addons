@@ -9,7 +9,7 @@
     'depends': [
         'base',
         'attachment_indexation',
-        'documents',
+        # 'documents',
     ],
     'author': 'Smile',
     'description': """
@@ -24,6 +24,7 @@
         'security/ir.model.access.csv',
         'views/document_view.xml',
         'views/menus.xml',
+
         'data/ir_cron.xml',
     ],
     'demo_xml': [],
