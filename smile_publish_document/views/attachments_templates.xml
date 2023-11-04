@@ -10,7 +10,7 @@
                            <ul style="width: 100%;text-align: left;line-height: 100%;">
                             <br/>
                             <t t-foreach="element_value" t-as="val">
-                                <li style="list-style-type:none;text-align: left;line-left: 50%;list-style-type: circle;">
+                                <li style="text-align: left;list-style-type: circle;">
                                     <a t-attf-href="publish-attachment/download?attachment_id=#{val.id}">
                                         <span t-esc="val.name"/>
                                     </a>
