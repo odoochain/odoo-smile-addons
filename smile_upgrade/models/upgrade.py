@@ -267,7 +267,7 @@ class Upgrade(object):
         filepath = os.path.join(self.dir_path, f_name)
         module = "base"
         if not os.path.exists(filepath):
-            for adp in addons.module.ad_paths:
+            for adp in addons.module.__path__:
                 fp = os.path.join(adp, f_name)
                 if os.path.exists(fp):
                     module = fname.split("/")[0]
