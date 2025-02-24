@@ -9,6 +9,7 @@
     'depends': [
         'attachment_indexation',
     ],
+    'license': 'AGPL-3',
     'author': 'Smile',
     'description': """
         Document Management
