@@ -16,7 +16,10 @@ and to compute code coveraged by tests.
     "depends": ["base"],
     "auto_install": False,
     "external_dependencies": {
-        "python": ["coverage"],
+        "python": [
+        "coverage",
+        "unittest-xml-reporting"
+        ],
         "bin": ["flake8"],
     },
 }

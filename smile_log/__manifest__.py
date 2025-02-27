@@ -19,7 +19,8 @@ Notice
         logger = SmileDBLogger(self._cr.dbname, model'res.partner', self.id, self._uid)
         logger.info(your_message)
 """,
-    "depends": ['base'],
+    "depends": ['base',
+    ],
     "data": [
         "security/smile_log_security.xml",
         "security/ir.model.access.csv",

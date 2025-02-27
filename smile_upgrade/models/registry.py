@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 native_new = Registry.new
 
-
+@classmethod
 def new(cls, db_name, force_demo=False, status=None, update_module=False):
     callers = [frame[3] for frame in inspect.stack()]
     if "preload_registries" not in callers and \
@@ -93,4 +93,4 @@ def _run_upgrade_post(upgrade_manager, initial_config):
     config["max_cron_threads"] = max_cron_threads
 
 
-# Registry.new = new
+Registry.new = new

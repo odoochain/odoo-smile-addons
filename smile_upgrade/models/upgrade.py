@@ -6,10 +6,9 @@ import psycopg2
 from odoo import api, sql_db, SUPERUSER_ID, tools
 from odoo.exceptions import UserError
 import odoo.modules as addons
-from odoo.tools import parse_version
+from odoo.tools import parse_version,config
 from odoo.tools.func import lazy_property
 from odoo.tools.safe_eval import safe_eval
-from odoo.tools import config
 
 from .config import configuration as upgrade_config
 

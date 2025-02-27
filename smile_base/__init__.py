@@ -25,7 +25,11 @@ def set_default_lang(env):
     fr = env['res.lang'].with_context(active_test=False).search(
         [('code', '=', 'fr_FR')])
     wz = env['base.language.install'].create({'lang_ids': fr.ids})
+    cn = env['res.lang'].with_context(active_test=False).search(
+        [('code', '=', 'zh_CN')])
+    wz_cn = env['base.language.install'].create({'lang_ids': cn.ids})
     wz.lang_install()
+    wz_cn.lang_install()
     if fr:
         partner_lang_field_id = env.ref('base.field_res_partner__lang').id
         value = env['ir.default'].search(
@@ -65,6 +69,16 @@ def correct_datetime_format_eng(env):
             'thousands_sep': ',',
         })
 
+def correct_datetime_format_cn(env):
+    language = env['res.lang'].search([('code', '=', 'zh_CN')], limit=1)
+    if language:
+        language.write({
+            'date_format': '%m/%d/%Y',
+            'time_format': '%H:%M:%S',
+            'grouping': '[3, 3, 3, 3, 3]',
+            'decimal_point': '.',
+            'thousands_sep': ',',
+        })
 
 def remove_menus(env):
     for menu_id in ('base.module_mi', 'base.menu_module_updates'):
